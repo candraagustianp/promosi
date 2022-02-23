@@ -18,14 +18,14 @@
         <!-- boxicon -->
         <link rel="stylesheet" href="<?= base_url('assets/vendor/boxicons/css/boxicons.css') ?>">
 
+        <!-- native -->
+        <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>">
+
         <title>Wilayah</title>
         <style>
-            body{
-                background-color: rgb(202, 202, 202);
-            }
             .map {
                 width: 100%;
-                height: calc(100vh - 130px);
+                height: 100%;
             }
             .bg-grey{
                 background-color: rgb(221, 221, 221);
@@ -50,6 +50,7 @@
                     Semua
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Semua</a>
                         <a class="dropdown-item" href="#">Pekalongan</a>
                         <a class="dropdown-item" href="#">Pemalang</a>
                         <a class="dropdown-item" href="#">Tegal</a>
@@ -66,50 +67,44 @@
                 
             </div>
         </nav>
-          
-        <div class="container-fluid">
-            <div class="row">
-            <div class="col-sm-3">
-                    <div class="card bg-secondary">
-                        <div class="card-body ">
-                            <form action="" class="select-wilayah">
-                                <div class="">
-                                    <div class="mt-3">
-                                        <select name="provinsi" id="provinsi" class="form-control">
-                                            <option value="pilih">Semua</option>
-                                            <option value="pilih">Pekalongan</option>
-                                            <option value="pilih">Pemalang</option>
-                                            <option value="pilih">Tegal</option>
-                                            <option value="pilih">Brebes</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mt-3">
-                                        <button class="btn btn-info"> Sekolah</button>
-                                    </div>
-                                    <div class="mt-3">
-                                        <button class="btn btn-warnign"> Keramaian</button>
-                                    </div>
-                                </div>
-                            </form>
-            
-                            
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-9">
-                    <div class="card">
-                        <div class="car-body" style="position: relative;">
-                            <!-- conatiner for map -->
-                            <div id="map" class="map"></div>
-                            <div id="feature" class="sidebar"></div>
-                        </div>
-                    </div>
+        <div class="container-fluid d-md-flex align-items-stretch">
+            <nav id="sidebar">
+                <h5>Kategori</h5>
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Kota</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu1">
+                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Semua</a></li>
+                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Pekalongan</a></li>
+                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Pemalang</a></li>
+                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Tegal</a></li>
+                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Brebes</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="">Sekolah</a>
+                    </li>
+                    <li>
+                        <a class="">Keramaian</a>
+                    </li>
+                </ul>
+
+                <div class="mb-5">
+                    <h5>Menu</h5>
+                    <ul class="list-unstyled components">
+                        <li>
+                            <a href="<?= site_url("Dashboard/tambah") ?>">Tambah Data</a>
+                        </li>
+                    </ul>
                 </div>
+            </nav>
+            
+            <div id="content" class="pl-2">
+                <?= $content ?>
             </div>
         </div>
-
         
         <footer class="footer mt-2 py-3 bg-grey">
             <div class="container">

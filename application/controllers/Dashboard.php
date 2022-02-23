@@ -9,14 +9,16 @@ class Dashboard extends CI_Controller {
     }
 
     function index() {
-        $this->load->view('template',[
-            'content' => $this->load->view('dashboard',[
-                'sekolah' => $this->s->get(),
-                'keramaian' => $this->k->get()
-            ],true)
+        $this->load->view('template', [
+            'content' => $this->load->view('map',[],true)
         ]);
     }
 
+    function tambah() {
+        $this->load->view('template',[
+            'content' => $this->load->view('tambah',[],true)
+        ]);
+    }
     
 }
 
