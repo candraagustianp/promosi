@@ -1,20 +1,19 @@
 <?php
 
-class Sekolah extends CI_Controller {
+class Media extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->model('SekolahModel','s');
+        $this->load->model('MediaModel','m');
         $this->load->model('KotaModel','k');
-
     }
 
     function index($kota) {
-        if ($kota) $data['sekolah'] = $this->s->getKota($kota);
-        else $data['sekolah'] = $this->s->get();
+        if ($kota) $data['media'] = $this->m->getKota($kota);
+        else $data['media'] = $this->m->get();
 
         $this->load->view('template',[
-            'content' => $this->load->view('sekolah/map',$data,true),
+            'content' => $this->load->view('media/map',$data,true),
             'kotas' => $this->k->get(),
             'kota' => $kota
         ]);
@@ -23,7 +22,7 @@ class Sekolah extends CI_Controller {
     function tambah() {
         $kota = 0;
         $this->load->view('template',[
-            'content' => $this->load->view('sekolah/tambah',[
+            'content' => $this->load->view('media/tambah',[
                 'kotas' => $this->k->get()
             ],true),
             'kotas' => $this->k->get(),
@@ -32,15 +31,15 @@ class Sekolah extends CI_Controller {
     }
 
     function save() {
-        $this->s->save($this->input->post());
+        $this->m->save($this->input->post());
         redirect("Dashboard");
     }
 
     function edit($id) {
         $kota = 0;
         $this->load->view('template',[
-            'content' => $this->load->view('sekolah/edit',[
-                'data' => $this->s->find($id),
+            'content' => $this->load->view('media/edit',[
+                'data' => $this->m->find($id),
                 'kotas' => $this->k->get()
             ],true),
             'kotas' => $this->k->get(),
@@ -48,14 +47,13 @@ class Sekolah extends CI_Controller {
         ]);
     }
 
-
     function update($id) {
-        $this->s->update($id,$this->input->post());
+        $this->m->update($id,$this->input->post());
         redirect("Dashboard");
     }
 
     function delete($id) {
-        $this->s->delete($id);
+        $this->m->delete($id);
         redirect("Dashboard");
     }
 

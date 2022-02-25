@@ -24,6 +24,7 @@
         <title>Wilayah</title>
         <style>
             .map {
+                min-height: 250px;
                 width: 100%;
                 height: 100%;
             }
@@ -58,11 +59,12 @@
                     </div>
                 </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Sekolah</a>
+                    <a class="nav-link" href="<?= site_url('Sekolah/get') ?>">Sekolah</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Keramaian</a>
+                    <a class="nav-link" href="<?= site_url('Keramaian/get') ?>">Titik Keramaian</a>
                   </li>
+                  
                 </ul>
                 
             </div>
@@ -75,19 +77,22 @@
                     <li>
                         <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Kota</a>
                         <ul class="collapse list-unstyled" id="pageSubmenu1">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Semua</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Pekalongan</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Pemalang</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Tegal</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Brebes</a></li>
+                            <li><a href="<?= site_url('Dashboard') ?>"><span class="fa fa-chevron-right mr-2"></span>Semua</a></li>
+                            <?php foreach ($kotas as $c) { ?>
+                                <li><a href="<?= site_url('Dashboard/kota/').$c['id'] ?>"><span class="fa fa-chevron-right mr-2"></span> <?= $c['nama'] ?></a></li>
+                            <?php } ?>
+                            
                             
                         </ul>
                     </li>
                     <li>
-                        <a class="">Sekolah</a>
+                        <a href="<?= site_url('Sekolah/index/').$kota ?>" class="">Sekolah</a>
                     </li>
                     <li>
-                        <a class="">Keramaian</a>
+                        <a href="<?= site_url('Keramaian/index/').$kota ?>" class="">Titik Keramaian</a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('Media/index/').$kota ?>" class="">Media Promosi</a>
                     </li>
                 </ul>
 
@@ -95,7 +100,12 @@
                     <h5>Menu</h5>
                     <ul class="list-unstyled components">
                         <li>
-                            <a href="<?= site_url("Dashboard/tambah") ?>">Tambah Data</a>
+                            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tambah Data</a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu2">
+                                <li><a href="<?= site_url("Sekolah/tambah") ?>"><span class="fa fa-chevron-right mr-2"></span>Sekolah</a></li>
+                                <li><a href="<?= site_url("Keramaian/tambah") ?>"><span class="fa fa-chevron-right mr-2"></span>Titik Keramaian</a></li>
+                                <li><a href="<?= site_url("media/tambah") ?>"><span class="fa fa-chevron-right mr-2"></span>Media Promosi</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -119,19 +129,6 @@
             </div>
         </footer>
 
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY2FuZHJhYWd1c3RpYW4iLCJhIjoiY2t2b284NjV3MjRteDJ1cWc2ajd1dXRraCJ9.qlP72PtgrpVITxr7Aa_GDA';
-            const map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [119.3829406, -2.1821934], // starting position [lng, lat]
-                zoom: 4 // starting zoom
-            });
-            map.on("mouseenter", "cluster",() => {
-                if (drawing) map.getCanvas().style.cursor = 'pointer';
-                else map.getCanvas().style.cursor = 'grab';
-            });
-
-        </script>
+        
     </body>
 </html>

@@ -20,4 +20,8 @@ class KeramaianModel extends CI_Model {
     function delete($id) {
         $this->db->where(['id' => $id])->delete('keramaian');
     }
+
+    function getKota($kota) {
+        return $this->db->where(['id_kota' => $kota])->get('keramaian')->result_array();
+    }
 }

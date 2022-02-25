@@ -20,4 +20,8 @@ class SekolahModel extends CI_Model {
     function delete($id) {
         $this->db->where(['id' => $id])->delete('sekolah');
     }
+
+    function getKota($kota) {
+        return $this->db->where(['id_kota' => $kota])->get('sekolah')->result_array();
+    }
 }
